@@ -1,0 +1,228 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ICTU / Gebruiker Centraal / Richtlijn taxonomie\n"
+"POT-Creation-Date: 2024-09-10 17:55+0200\n"
+"PO-Revision-Date: 2024-09-10 17:55+0200\n"
+"Last-Translator: David Hund <david@valuedstandards.com>\n"
+"Language-Team: David Hund\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: ictuwp-plugin-richtlijn-taxonomie.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: ictuwp-plugin-richtlijn-taxonomie.php:336
+msgctxt "Warning for redirect error"
+msgid "Er hangt geen gepubliceerde pagina aan dit richtlijn."
+msgstr ""
+
+#: ictuwp-plugin-richtlijn-taxonomie.php:339
+#, php-format
+msgctxt "Warning for redirect error"
+msgid "<a href=\"%s\">Voeg een gepubliceerde pagina toe, alsjeblieft.</a>"
+msgstr ""
+
+#: ictuwp-plugin-richtlijn-taxonomie.php:416
+msgctxt "label page template"
+msgid "[Richtlijn] overzicht"
+msgstr ""
+
+#: ictuwp-plugin-richtlijn-taxonomie.php:417
+msgctxt "label page template"
+msgid "[Richtlijn] detailpagina"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:23 includes/richtlijn-taxonomy.php:24
+msgctxt "Custom taxonomy labels definition"
+msgid "Richtlijn"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:25
+msgctxt "Custom taxonomy labels definition"
+msgid "Zoek richtlijnen"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:26
+msgctxt "Custom taxonomy labels definition"
+msgid "Populaire richtlijnen"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:27
+msgctxt "Custom taxonomy labels definition"
+msgid "Alle richtlijnen"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:28
+msgctxt "Custom taxonomy labels definition"
+msgid "Bewerk richtlijn"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:29
+msgctxt "Custom taxonomy labels definition"
+msgid "Bekijk richtlijn"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:30
+msgctxt "Custom taxonomy labels definition"
+msgid "Richtlijn bijwerken"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:31
+msgctxt "Custom taxonomy labels definition"
+msgid "Voeg nieuw richtlijn toe"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:32
+msgctxt "Custom taxonomy labels definition"
+msgid "Nieuwe richtlijn"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:33
+msgctxt "Custom taxonomy labels definition"
+msgid "Kommagescheiden richtlijnen"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:34
+msgctxt "Custom taxonomy labels definition"
+msgid "Richtlijnen toevoegen of verwijderen"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:35
+msgctxt "Custom taxonomy labels definition"
+msgid "Kies uit de meest-gekozen richtlijnen"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:36 includes/richtlijn-taxonomy.php:37
+msgctxt "Custom taxonomy labels definition"
+msgid "Geen richtlijnen gevonden"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:38
+msgctxt "Custom taxonomy labels definition"
+msgid "Navigatie door richtlijnenlijst"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:39
+msgctxt "Custom taxonomy labels definition"
+msgid "Richtlijnenlijst"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:40
+msgctxt "Custom taxonomy labels definition"
+msgid "Richtlijn Link"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:41
+msgctxt "Custom taxonomy labels definition"
+msgid "Een link naar een Richtlijn"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:42
+msgctxt "Custom taxonomy labels definition"
+msgid "Richtlijnen"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:43
+msgctxt "Custom taxonomy labels definition"
+msgid "Terug naar richtlijnen"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:44
+msgctxt "Custom taxonomy labels definition"
+msgid "Geen richtlijnen gevonden in de prullenbak"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:45
+msgctxt "Custom taxonomy labels definition"
+msgid "Uitgelichte afbeelding"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:46
+msgctxt "Custom taxonomy labels definition"
+msgid "Richtlijn overzicht"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:57
+msgctxt "Custom taxonomy arguments definition"
+msgid "Richtlijnen"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:58
+msgctxt "Custom taxonomy arguments definition"
+msgid "Richtlijnen op het gebied van een gebruikersvriendelijke overheid"
+msgstr ""
+
+#: includes/richtlijn-taxonomy.php:222
+msgid "Hoort bij het richtlijn"
+msgid_plural "Hoort bij de richtlijnen"
+msgstr[0] ""
+msgstr[1] ""
+
+#: template-detail-richtlijnen.php:38
+msgctxt "Richtlijn taxonomy error message"
+msgid "Geen richtlijn gekoppeld aan deze pagina. "
+msgstr ""
+
+#: template-detail-richtlijnen.php:41
+msgctxt "Richtlijn taxonomy error message"
+msgid "Kies een relevante richtlijn voor deze pagina. "
+msgstr ""
+
+#: template-overview-richtlijnen.php:92
+msgctxt "Richtlijn overview: card warning"
+msgid ""
+"Deze card is verborgen totdat een pagina wordt gekoppeld aan deze Richtlijn!"
+msgstr ""
+
+#: template-overview-richtlijnen.php:142
+msgctxt "Richtlijn overview: card warning"
+msgid "Deze card is verborgen totdat de pagina gepubliceerd wordt!"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "ICTU / Gebruiker Centraal / Richtlijn taxonomie"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/ICTU/ictuwp-plugin-richtlijn-taxonomie"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Plugin voor het aanmaken van de 'richtlijn'-taxonomie en gerelateerde pagina "
+"templates."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "David Hund"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://github.com/ICTU/ictuwp-plugin-richtlijn-taxonomie/"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "[Richtlijn] overzicht"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "[Richtlijn] detailpagina"
+msgstr ""
+
+#~ msgctxt "label page template"
+#~ msgid "Richtlijn / overzicht"
+#~ msgstr "Richtlijn / overzicht alle richtlijnen"
+
+#~ msgctxt "slug for taxonomy"
+#~ msgid "deslug"
+#~ msgstr "nlrichtlijn"
