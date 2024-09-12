@@ -127,6 +127,14 @@ if ( function_exists( 'fn_ictu_richtlijn_get_richtlijn_terms' ) ) {
 						$item['descr'] = get_field( 'post_inleiding', $item_page );
 					}
 					// No else needed for Term description as this was the default already..
+
+					// Fetch Thema's for this Richtlijn page
+					if ( function_exists( 'fn_ictu_thema_get_post_thema_terms' ) ) {
+						// - All by default (2nd parameter = nullish)
+						$themas         = fn_ictu_thema_get_post_thema_terms( $item_page_id );
+						$item['themas'] = $themas['items'];
+					}
+
 				} else {
 					// Not a proper page?
 					// Show warning *when* we are viewing the page logged-in
