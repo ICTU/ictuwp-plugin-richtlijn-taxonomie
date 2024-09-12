@@ -14,7 +14,7 @@ $current_richtlijn_term  = get_term_by( 'id', $current_richtlijn_taxid, GC_RICHT
 $context                = Timber::context();
 $context['post']        = $timber_post;
 $context['modifier']    = 'richtlijn-detail';
-$context['is_unboxed']  = true;
+$context['is_unboxed']  = false;
 $context['show_author'] = false;
 
 if ( $current_richtlijn_term && ! is_wp_error( $current_richtlijn_term ) ) {
@@ -33,15 +33,15 @@ $templates = [ 'richtlijn-detail.twig', 'page.twig' ];
 function get_current_richtlijn_tax() {
 	global $post;
 
-	$term_id = get_field( 'richtlijn_detail_select_richtlijn_term' ) ?: 0;
-	if ( ! $term_id ) {
-		$aargh = _x( 'Geen richtlijn gekoppeld aan deze pagina. ', 'Richtlijn taxonomy error message', 'gctheme' );
-		if ( current_user_can( 'editor' ) ) {
-			$editlink = get_edit_post_link( $post );
-			$aargh    .= '<a href="' . $editlink . '">' . _x( 'Kies een relevante richtlijn voor deze pagina. ', 'Richtlijn taxonomy error message', 'gctheme' ) . '</a>';
-		}
-		die( $aargh );
-	}
+	$term_id = get_field( 'richtlijn_detail_select_richtlijn_term', $post ) ?: 0;
+	// if ( ! $term_id ) {
+	// 	$aargh = _x( 'Geen richtlijn gekoppeld aan deze pagina. ', 'Richtlijn taxonomy error message', 'gctheme' );
+	// 	if ( current_user_can( 'editor' ) ) {
+	// 		$editlink = get_edit_post_link( $post );
+	// 		$aargh    .= '<a href="' . $editlink . '">' . _x( 'Kies een relevante richtlijn voor deze pagina. ', 'Richtlijn taxonomy error message', 'gctheme' ) . '</a>';
+	// 	}
+	// 	die( $aargh );
+	// }
 
 	return $term_id;
 }

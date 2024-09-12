@@ -8,8 +8,8 @@
  * Plugin Name:         ICTU / Gebruiker Centraal / Richtlijn taxonomie
  * Plugin URI:          https://github.com/ICTU/ictuwp-plugin-richtlijn-taxonomie
  * Description:         Plugin voor het aanmaken van de 'richtlijn'-taxonomie en gerelateerde pagina templates.
- * Version:             1.0.0
- * Version description: Initial commit: Richtlijn taxonomy plugin. Basically a copy of Hulpmiddel.
+ * Version:             1.0.1
+ * Version description: fix: detail template. Add (commented) static method `get_templates()`
  * Author:              David Hund
  * Author URI:          https://github.com/ICTU/ictuwp-plugin-richtlijn-taxonomie/
  * License:             GPL-3.0+
@@ -70,6 +70,18 @@ if ( ! class_exists( 'GC_richtlijn_taxonomy' ) ) :
 			$this->fn_ictu_richtlijn_setup_actions();
 
 		}
+
+		// /** ----------------------------------------------------------------------------------------------------
+		//  * Get available templates
+		//  */
+		// public static function get_templates() {
+
+		// 	return array(
+		// 		GC_RICHTLIJN_TAX_OVERVIEW_TEMPLATE => _x( '[Richtlijn] overzicht', 'label page template', 'gctheme' ),
+		// 		GC_RICHTLIJN_TAX_DETAIL_TEMPLATE   => _x( '[Richtlijn] detailpagina', 'label page template', 'gctheme' ),
+		// 	);
+
+		// }
 
 		/** ----------------------------------------------------------------------------------------------------
 		 * Hook this plugins functions into WordPress.
