@@ -8,8 +8,8 @@
  * Plugin Name:         ICTU / Gebruiker Centraal / Richtlijn taxonomie
  * Plugin URI:          https://github.com/ICTU/ictuwp-plugin-richtlijn-taxonomie
  * Description:         Plugin voor het aanmaken van de 'richtlijn'-taxonomie en gerelateerde pagina templates.
- * Version:             1.0.1
- * Version description: fix: detail template. Add (commented) static method `get_templates()`
+ * Version:             1.0.2
+ * Version description: fix: breadcrumb `$links` do not include parent of richtlijn page.
  * Author:              David Hund
  * Author URI:          https://github.com/ICTU/ictuwp-plugin-richtlijn-taxonomie/
  * License:             GPL-3.0+
@@ -240,6 +240,26 @@ if ( ! class_exists( 'GC_richtlijn_taxonomy' ) ) :
 				if ( $post->post_parent !== 0 ) {
 					// page does have a parent, whatever parent it might be, so:
 					// do nothing extra for breadcrumb
+
+					// EXCEPT:
+					// for some unknown reason, $links still often contains
+					// only 2 links, and not our paren.
+					// So we need to add the parent manually :-(
+					//
+					// @TODO: why does $links only contain 2 items (home + current page)?!
+					//
+					// ----------------------------------------------
+					$richtlijn_parent_page_id = $post->post_parent;
+					if ( $links[count($links)-1]['id'] !== $post->post_parent ) {
+						// Parent breadcrumb item is NOT our page parent?!
+						// Add it manually...
+						$taxonomy_link = array(
+							'url'  => get_permalink( $richtlijn_parent_page_id ),
+							'text' => get_the_title( $richtlijn_parent_page_id )
+						);
+						array_splice( $links, - 1, 0, [ $taxonomy_link ] );
+					}
+					// ----------------------------------------------
 
 				} else {
 					// page does NOT have a parent, so let's add the overview page to the breadcrumb.
