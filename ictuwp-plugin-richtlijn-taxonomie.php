@@ -8,8 +8,8 @@
  * Plugin Name:         ICTU / Gebruiker Centraal / Richtlijn taxonomie
  * Plugin URI:          https://github.com/ICTU/ictuwp-plugin-richtlijn-taxonomie
  * Description:         Plugin voor het aanmaken van de 'richtlijn'-taxonomie en gerelateerde pagina templates.
- * Version:             1.0.2
- * Version description: fix: breadcrumb `$links` do not include parent of richtlijn page.
+ * Version:             1.1.0
+ * Version description: remove `wpseo_breadcrumb_links` callback. Remove Richtlijn taxonomy side-panel.
  * Author:              David Hund
  * Author URI:          https://github.com/ICTU/ictuwp-plugin-richtlijn-taxonomie/
  * License:             GPL-3.0+
