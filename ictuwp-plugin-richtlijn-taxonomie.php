@@ -95,9 +95,6 @@ if ( ! class_exists( 'GC_richtlijn_taxonomy' ) ) :
 			// add page templates
 			add_filter( 'template_include', array( $this, 'fn_ictu_richtlijn_append_template_locations' ) );
 
-			// filter the breadcrumbs
-			add_filter( 'wpseo_breadcrumb_links', array( $this, 'fn_ictu_richtlijn_yoast_filter_breadcrumb' ) );
-
 			// check if the term has detail page attached
 			add_action( 'template_redirect', array( $this, 'fn_ictu_richtlijn_check_redirect' ) );
 
@@ -217,119 +214,6 @@ if ( ! class_exists( 'GC_richtlijn_taxonomy' ) ) :
 
 			// If all else fails, return template
 			return $template;
-		}
-
-
-		/**
-		 * Filter the Yoast SEO breadcrumb
-		 *
-		 * @in: $links (array)
-		 *
-		 * @return: $links (array)
-		 *
-		 */
-		public function fn_ictu_richtlijn_yoast_filter_breadcrumb( $links ) {
-			global $post;
-
-			if ( $post && is_page() ) {
-
-				// Currently Querying a Page
-				// Try and see if it has the GC_RICHTLIJN_TAX_DETAIL_TEMPLATE template
-				// and if so, append the Richtlijn Overview Page to the breadcrumb
-				// But only if the current page is not a childpage of the parent...
-				if ( $post->post_parent !== 0 ) {
-					// page does have a parent, whatever parent it might be, so:
-					// do nothing extra for breadcrumb
-
-					// EXCEPT:
-					// for some unknown reason, $links still often contains
-					// only 2 links, and not our paren.
-					// So we need to add the parent manually :-(
-					//
-					// @TODO: why does $links only contain 2 items (home + current page)?!
-					//
-					// ----------------------------------------------
-					$richtlijn_parent_page_id = $post->post_parent;
-					if ( $links[count($links)-1]['id'] !== $post->post_parent ) {
-						// Parent breadcrumb item is NOT our page parent?!
-						// Add it manually...
-						$taxonomy_link = array(
-							'url'  => get_permalink( $richtlijn_parent_page_id ),
-							'text' => get_the_title( $richtlijn_parent_page_id )
-						);
-						array_splice( $links, - 1, 0, [ $taxonomy_link ] );
-					}
-					// ----------------------------------------------
-
-				} else {
-					// page does NOT have a parent, so let's add the overview page to the breadcrumb.
-					$page_template = get_post_meta( $post->ID, '_wp_page_template', true );
-
-					if ( $page_template && $page_template === GC_RICHTLIJN_TAX_DETAIL_TEMPLATE ) {
-						// current page has template = GC_RICHTLIJN_TAX_DETAIL_TEMPLATE
-
-						// Get the Richtlijn Overview Page to append to our breadcrumb
-						$richtlijn_overview_page_id = $this->fn_ictu_richtlijn_get_richtlijn_overview_page();
-
-						if ( $richtlijn_overview_page_id ) {
-							// We have a Overview-page ID
-							// and it is not the parent of the current page
-							// Use this page as GC_RICHTLIJN_TAX term parent in the breadcrumb
-							$taxonomy_link = array(
-								'url'  => get_permalink( $richtlijn_overview_page_id ),
-								'text' => get_the_title( $richtlijn_overview_page_id )
-							);
-							array_splice( $links, - 1, 0, [ $taxonomy_link ] );
-						}
-
-					}
-
-				}
-
-
-			} elseif ( is_tax( GC_RICHTLIJN_TAX ) ) {
-
-				// NOT currently Querying a Page, but a GC_RICHTLIJN_TAX term
-				$term = get_queried_object();
-				// Append taxonomy if 1st-level child term only
-				// old: Home > Term
-				// new: Home > Taxonomy > Term
-
-				if ( ! $term->parent ) {
-
-					$richtlijn_overview_page_id = $this->fn_ictu_richtlijn_get_richtlijn_overview_page();
-
-					if ( $richtlijn_overview_page_id ) {
-						// Use this page as GC_RICHTLIJN_TAX term parent in the breadcrumb
-						// If not available,
-						// - [1] Do not display root
-						// - [2] OR fall back to Taxonomy Rewrite
-
-						$taxonomy_link = array(
-							'url'  => get_permalink( $richtlijn_overview_page_id ),
-							'text' => get_the_title( $richtlijn_overview_page_id )
-						);
-						array_splice( $links, - 1, 0, array( $taxonomy_link ) );
-
-					} else {
-						// [1] .. do nothing...
-
-						// [2] OR .. use Taxonomy Rewrite as root
-
-						// $taxonomy      = get_taxonomy( GC_RICHTLIJN_TAX );
-						// $taxonomy_link = [
-						// 	'url' => get_home_url() . '/' . $taxonomy->rewrite['slug'],
-						// 	'text' => $taxonomy->labels->archives,
-						// 	'term_id' => get_queried_object_id(),
-						// ];
-						// array_splice( $links, -1, 0, [$taxonomy_link] );
-					}
-				}
-
-			}
-
-			return $links;
-
 		}
 
 
