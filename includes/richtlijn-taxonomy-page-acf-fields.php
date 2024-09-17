@@ -50,7 +50,7 @@ acf_add_local_field_group( array(
 			'save_terms' => 0,
 			'load_terms' => 0,
 			'return_format' => 'id',
-			'field_type' => 'radio',
+			'field_type' => 'select',
 			'allow_null' => 0,
 			'multiple' => 0,
 			'bidirectional' => 1,
