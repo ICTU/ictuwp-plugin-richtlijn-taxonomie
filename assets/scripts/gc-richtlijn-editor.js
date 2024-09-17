@@ -5,7 +5,10 @@
 if ( wp ) {
     wp.domReady( () => {
         // Remove Richtlijn Taxonomy panel from sidebar
-        // on pages that have the Richtlijn Detail Page template
+        // console.log(`gc-richtlijn-editor.js`);
         wp.data.dispatch( 'core/editor').removeEditorPanel( 'taxonomy-panel-richtlijn' );
+        // Check:
+        // wp.data.dispatch( 'core/editor').toggleEditorPanelEnabled( 'taxonomy-panel-richtlijn' );
+        // wp.data.select( 'core/editor' ).getCurrentPost().template
     } );
 }
