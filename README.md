@@ -3,9 +3,10 @@ Plugin voor het aanmaken van de 'richtlijn'-taxonomie en gerelateerde pagina tem
 
 
 ## Current version:
-* 1.1.1 - Richtlijn Term select on page is now a `select` field.
+* 1.2.0 - Richtlijn Page select on Term editor now filters only pages with Richtlijn Detail template.
 
 ## Version history
+* 1.2.0 - Richtlijn Page select on Term editor now filters only pages with Richtlijn Detail template.
 * 1.1.1 - Richtlijn Term select on page is now a `select` field.
 * 1.1.0 - remove `wpseo_breadcrumb_links` callback. Remove Richtlijn taxonomy side-panel.
 * 1.0.2 - fix: breadcrumb `$links` do not include parent of richtlijn page.
