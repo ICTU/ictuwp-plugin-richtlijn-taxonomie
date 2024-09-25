@@ -57,7 +57,7 @@ if (
 // add_action( 'wp_enqueue_scripts', 'gc_enqueue_checkbox_filters_scripts' );
 // function gc_enqueue_checkbox_filters_scripts() {
 // 	// handle, source, deps, version, footer
-// 	wp_enqueue_script( 'gc-checkbox-filters', get_template_directory_uri() . '/assets/js/gc-checkbox-filters.min.js', [], '1.1.1', true );
+// 	wp_enqueue_script( 'gc-checkbox-filters', get_template_directory_uri() . '/assets/js/gc-checkbox-filters.min.js', [], '1.2.0', true );
 // }
 
 // Use a special Overview template with filters

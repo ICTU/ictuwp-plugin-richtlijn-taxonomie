@@ -173,3 +173,14 @@ acf_add_local_field_group( array(
 	'description' => '',
 	'show_in_rest' => 0,
 ) );
+
+// Filter the Richtlijn Taxonomy Term
+// query for the richtlijn_taxonomy_page field
+// to only return pages with the richtlijn detail template
+add_filter( 'acf/fields/post_object/query/name=richtlijn_taxonomy_page', 'richtlijn_taxonomy_page_filter', 10, 4 );
+function richtlijn_taxonomy_page_filter( $args, $field, $post_id ) {
+	$args['meta_key']   = '_wp_page_template';
+	$args['meta_value'] = 'template-detail-richtlijnen.php';
+
+	return $args;
+}
