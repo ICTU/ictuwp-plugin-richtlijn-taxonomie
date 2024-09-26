@@ -97,6 +97,63 @@ if ( ! taxonomy_exists( GC_RICHTLIJN_TAX ) ) {
 
 
 /**
+ * Richtlijn is a custom Taxonomy (WP_Term)
+ * It has some *extra* ACF fields:
+ * - richtlijn_taxonomy_page: 'Richtlijnpagina' landingspage
+ * - richtlijn_taxonomy_link: link to [external] richtlijn (URL) [optional]
+ * Plus we add a custom `richtlijn_slug` property to the Term object
+ * to be able to order the Terms based on the linked Page slug.
+ * @param WP_Term|Number $term or Term ID
+ * @return WP_Term
+ */
+function add_richtlijn_fields( $term ) {
+	// If we have a Term ID, fetch the Term object
+	if ( is_numeric( $term ) ) {
+		$term = get_term( $term );
+	}
+
+	if ( ! $term || is_wp_error( $term ) || ! $term instanceof WP_Term ) {
+		return $term;
+	}
+
+	// Add a custom `richtlijn_slug` property to the Term object
+	// which is the Term slug by default, but is changed
+	// to the Linked Page slug if we have a linked Page.
+	$term->richtlijn_slug = $term->slug;
+	// Add ACF fields to the Term object
+	$term_fields = get_fields( $term );
+	if ( is_array( $term_fields ) ) {
+		foreach ( $term_fields as $key => $val ) {
+
+			// Add extra `url` property to Term if we have a linked Page
+			// Change `richtlijn_slug` property to the linked Page slug.
+			// $val is the ID of the linked Page
+			if ( $key == 'richtlijn_taxonomy_page' && ! empty( $val ) ) {
+				$term->url            = get_permalink( $val );
+				$term->richtlijn_slug = get_post_field( 'post_name', $val );
+			}
+
+			// Add extra `direct` property to Term if we have a Link
+			// and we want to skip the Page (if set)
+			if ( $key == 'richtlijn_taxonomy_link' && ! empty( $val ) ) {
+				if (
+					/* If passed `direct` param... */
+					$skip_landingspage_when_linked ||
+					/* .. OR we have a Link but no Page */
+					empty( $term_fields['richtlijn_taxonomy_page'] )
+				) {
+					$term->direct = true;
+				}
+			}
+
+			$term->$key = $val;
+		}
+	}
+	return $term;
+}
+
+
+/**
  * fn_ictu_richtlijn_get_richtlijn_terms()
  *
  * 'Richtlijn' is a custom taxonomy (category)
@@ -118,8 +175,6 @@ if ( ! taxonomy_exists( GC_RICHTLIJN_TAX ) ) {
  * @param Array $richtlijn_args Specific term query Arguments to use
  * @param Boolean $skip_landingspage_when_linked Go straight to Link and bypass Page, even when set?
  */
-
-
 function fn_ictu_richtlijn_get_richtlijn_terms( $richtlijn_name = null, $term_args = null, $skip_landingspage_when_linked = false ) {
 
 	// TODO: I foresee that editors will want to have a custom order to the taxonomy terms
@@ -149,40 +204,8 @@ function fn_ictu_richtlijn_get_richtlijn_terms( $richtlijn_name = null, $term_ar
 		// Add our custom Fields to each found WP_Term instance
 		// And add to $richtlijn_terms[]
 		foreach ( $found_richtlijn_terms as $richtlijn_term ) {
-			// Add a custom `richtlijn_slug` property to the Term object
-			// which is the Term slug by default, but is changed
-			// to the Linked Page slug if we have a linked Page.
-			$richtlijn_term->richtlijn_slug = $richtlijn_term->slug;
-			// Add ACF fields to the Term object
-			$richtlijn_term_fields = get_fields( $richtlijn_term );
-			if ( is_array( $richtlijn_term_fields ) ) {
-				foreach ( $richtlijn_term_fields as $key => $val ) {
-
-					// Add extra `url` property to Term if we have a linked Page
-					// Change `richtlijn_slug` property to the linked Page slug.
-					// $val is the ID of the linked Page
-					if ( $key == 'richtlijn_taxonomy_page' && ! empty( $val ) ) {
-						$richtlijn_term->url            = get_permalink( $val );
-						$richtlijn_term->richtlijn_slug = get_post_field( 'post_name', $val );
-					}
-
-					// Add extra `direct` property to Term if we have a Link
-					// and we want to skip the Page (if set)
-					if ( $key == 'richtlijn_taxonomy_link' && ! empty( $val ) ) {
-						if (
-							/* If passed `direct` param... */
-							$skip_landingspage_when_linked ||
-							/* .. OR we have a Link but no Page */
-							empty( $richtlijn_term_fields['richtlijn_taxonomy_page'] )
-						) {
-							$richtlijn_term->direct = true;
-						}
-					}
-
-					$richtlijn_term->$key = $val;
-				}
-			}
-			$richtlijn_terms[] = $richtlijn_term;
+			// Add a custom ACF fields to Terms
+			$richtlijn_terms[] = add_richtlijn_fields( $richtlijn_term );
 		}
 	}
 
@@ -311,6 +334,18 @@ function order_by_richtlijn_slug( $items ) {
  *
  */
 function prepare_richtlijn_card_content( $richtlijn ) {
+
+	if ( ! $richtlijn || is_wp_error( $richtlijn ) || ! $richtlijn instanceof WP_Term ) {
+		return $richtlijn;
+	}
+
+	// Fill custom Term ACF fields when not already present
+	// We know there _should_ be a `richtlijn_taxonomy_page` property
+	// (could be empty)
+	// so we check for its presence.
+	if ( ! isset( $richtlijn->richtlijn_taxonomy_page ) ) {
+		$richtlijn = add_richtlijn_fields( $richtlijn );
+	}
 
 	$item = array(
 		// type, translates to card-type--{type}
