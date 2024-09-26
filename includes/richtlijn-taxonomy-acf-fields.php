@@ -72,6 +72,87 @@ acf_add_local_field_group( array(
 			),
 			'return_format' => 'array',
 		),
+		// array(
+		// 	'key' => 'field_66f2d48490352',
+		// 	'label' => 'Gerelateerde Community\'s',
+		// 	'name' => 'richtlijn_taxonomy_communities',
+		// 	'aria-label' => '',
+		// 	'type' => 'taxonomy',
+		// 	'instructions' => '',
+		// 	'required' => 0,
+		// 	'conditional_logic' => 0,
+		// 	'wrapper' => array(
+		// 		'width' => '',
+		// 		'class' => '',
+		// 		'id' => '',
+		// 	),
+		// 	'taxonomy' => 'community',
+		// 	'add_term' => 0,
+		// 	'save_terms' => 0,
+		// 	'load_terms' => 0,
+		// 	'return_format' => 'id',
+		// 	'field_type' => 'multi_select',
+		// 	'allow_null' => 0,
+		// 	'allow_in_bindings' => 0,
+		// 	'bidirectional' => 0,
+		// 	'multiple' => 0,
+		// 	'bidirectional_target' => array(
+		// 	),
+		// ),
+		// array(
+		// 	'key' => 'field_66f2d4e790353',
+		// 	'label' => 'Gerelateerde Thema\'s',
+		// 	'name' => 'richtlijn_taxonomy_themas',
+		// 	'aria-label' => '',
+		// 	'type' => 'taxonomy',
+		// 	'instructions' => '',
+		// 	'required' => 0,
+		// 	'conditional_logic' => 0,
+		// 	'wrapper' => array(
+		// 		'width' => '',
+		// 		'class' => '',
+		// 		'id' => '',
+		// 	),
+		// 	'taxonomy' => 'thema',
+		// 	'add_term' => 0,
+		// 	'save_terms' => 0,
+		// 	'load_terms' => 0,
+		// 	'return_format' => 'id',
+		// 	'field_type' => 'multi_select',
+		// 	'allow_null' => 0,
+		// 	'allow_in_bindings' => 0,
+		// 	'bidirectional' => 0,
+		// 	'multiple' => 0,
+		// 	'bidirectional_target' => array(
+		// 	),
+		// ),
+		// array(
+		// 	'key' => 'field_66f2d50690354',
+		// 	'label' => 'Gerelateerde Hulpmiddelen',
+		// 	'name' => 'richtlijn_taxonomy_hulpmiddelen',
+		// 	'aria-label' => '',
+		// 	'type' => 'taxonomy',
+		// 	'instructions' => '',
+		// 	'required' => 0,
+		// 	'conditional_logic' => 0,
+		// 	'wrapper' => array(
+		// 		'width' => '',
+		// 		'class' => '',
+		// 		'id' => '',
+		// 	),
+		// 	'taxonomy' => 'hulpmiddel',
+		// 	'add_term' => 0,
+		// 	'save_terms' => 0,
+		// 	'load_terms' => 0,
+		// 	'return_format' => 'id',
+		// 	'field_type' => 'multi_select',
+		// 	'allow_null' => 0,
+		// 	'allow_in_bindings' => 0,
+		// 	'bidirectional' => 0,
+		// 	'multiple' => 0,
+		// 	'bidirectional_target' => array(
+		// 	),
+		// ),
 	),
 	'location' => array(
 		array(
@@ -92,3 +173,14 @@ acf_add_local_field_group( array(
 	'description' => '',
 	'show_in_rest' => 0,
 ) );
+
+// Filter the Richtlijn Taxonomy Term
+// query for the richtlijn_taxonomy_page field
+// to only return pages with the richtlijn detail template
+add_filter( 'acf/fields/post_object/query/name=richtlijn_taxonomy_page', 'richtlijn_taxonomy_page_filter', 10, 4 );
+function richtlijn_taxonomy_page_filter( $args, $field, $post_id ) {
+	$args['meta_key']   = '_wp_page_template';
+	$args['meta_value'] = 'template-detail-richtlijnen.php';
+
+	return $args;
+}
