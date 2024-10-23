@@ -48,7 +48,8 @@ acf_add_local_field_group( array(
 			'post_status' => '',
 			'taxonomy' => '',
 			'return_format' => 'id',
-			'allow_null' => 0,
+			'allow_null' => 1,
+			'allow_in_bindings' => 0,
 			'multiple' => 0,
 			'bidirectional' => 1,
 			'bidirectional_target' => array(

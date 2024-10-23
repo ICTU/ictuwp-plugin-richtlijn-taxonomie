@@ -8,8 +8,8 @@
  * Plugin Name:         ICTU / Gebruiker Centraal / Richtlijn taxonomie
  * Plugin URI:          https://github.com/ICTU/ictuwp-plugin-richtlijn-taxonomie
  * Description:         Plugin voor het aanmaken van de 'richtlijn'-taxonomie en gerelateerde pagina templates.
- * Version:             1.3.0
- * Version description: Reusable `add_richtlijn_fields()` — adds ACF fields to WP_Term.
+ * Version:             1.3.1
+ * Version description: Allow NULL for 'richtlijn_taxonomy_page'.
  * Author:              David Hund
  * Author URI:          https://github.com/ICTU/ictuwp-plugin-richtlijn-taxonomie/
  * License:             GPL-3.0+

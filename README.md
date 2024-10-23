@@ -3,7 +3,7 @@ Plugin voor het aanmaken van de 'richtlijn'-taxonomie en gerelateerde pagina tem
 
 
 ## Current version:
-* 1.3.0 - Reusable `add_richtlijn_fields()` — adds ACF fields to WP_Term.
+* 1.3.1 - Allow NULL for 'richtlijn_taxonomy_page'.
 
 ## Version history
 * 1.3.0 - Reusable `add_richtlijn_fields()` — adds ACF fields to WP_Term.
